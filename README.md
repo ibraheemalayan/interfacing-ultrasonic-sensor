@@ -21,11 +21,14 @@ Connect an ultrasonic sensor to detect any objects from the front side and displ
 
 ## Code
 
-[main.ino](main.ino)
+[hw2.ino](hw2.ino)
 
 ## Issues
 
 * Ultrasonic Sesnor Instabilty ([#1][i1])
+* Make Buzzer Beeping Non-Blocking ([#2][i2])
 
 [i1]: https://github.com/ibraheemalayan/interfacing-ultrasonic-sensor/issues/1
+[i2]: https://github.com/ibraheemalayan/interfacing-ultrasonic-sensor/issues/2
+
 

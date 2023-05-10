@@ -1,12 +1,13 @@
 #include <LiquidCrystal_I2C.h>
 #include <MedianFilter.h>
+#include <EasyBuzzer.h>
 
 #define BUZZER_PIN 7
 #define TRIGGER_PIN A3
 #define ECHO_PIN A2
 
-// windows size: 10, seed 0
-MedianFilter filterObject(10, 0); 
+// windows size: 5, seed 0
+MedianFilter filterObject(10, 0);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 
@@ -23,6 +24,7 @@ void setup() {
   pinMode(TRIGGER_PIN, OUTPUT);
 
   pinMode(BUZZER_PIN, OUTPUT);
+  EasyBuzzer.setPin(BUZZER_PIN);
 
   lcd.init();  //initialize the lcd
   lcd.setBacklight(HIGH);
@@ -36,7 +38,10 @@ void setup() {
 
 void loop() {
 
-  unsigned int raw_distance = read_distance();
+  unsigned int raw_distance = read_distance();  // overall delay between reads should be at least 60 ms
+
+  /* should always be called for EasyBuzzer to work. */
+  EasyBuzzer.update();
 
   unsigned int filtered_distance = filterObject.in(raw_distance);
 
@@ -46,11 +51,21 @@ void loop() {
   lcd.print("    ");
 
   if (filtered_distance > 30) {
-    noTone(BUZZER_PIN);
+    // noTone(BUZZER_PIN);
+
+    EasyBuzzer.stopBeep();
+
   } else {
-    tone(BUZZER_PIN, 10000/filtered_distance );
+
+    EasyBuzzer.beep(
+      // filtered_distance  // Frequency in Hertz(HZ).
+      2
+    );
+
+    // tone(BUZZER_PIN, 10000/filtered_distance );
   }
 
+  delay(600);
 }
 
 int read_distance() {
@@ -67,15 +82,13 @@ int read_distance() {
 
   cm = duration / 2 / 29.1 + 1;
 
-  delay(60); // 
-
   return cm;
 }
 
 
 
 // function that reads 10 readings and removes max and min readings then returns the average
-// int read_distance_average() 
+// int read_distance_average()
 // {
 //   int readings[10];
 //   int i;
