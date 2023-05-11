@@ -19,6 +19,21 @@ Connect an ultrasonic sensor to detect any objects from the front side and displ
 
 ![Circuit Diagram](./assets/schematics.png)
 
+## Assembled Circuit
+
+<p float="left">
+  <img src="./assets/circuit_1.jpeg" width="300" />
+  <img src="./assets/circuit_2.jpeg" width="300" /> 
+  <img src="./assets/circuit_3.jpeg" width="300" />
+</p>
+
+          
+
+## Project Demo
+
+![Project Demo](https://cdn.loom.com/sessions/thumbnails/c36953c4ccf54f7eb345afdf09b8bf03-with-play.gif)    
+[Watch Video](https://www.loom.com/share/c36953c4ccf54f7eb345afdf09b8bf03)
+
 ## Code
 
 [hw2.ino](hw2.ino)

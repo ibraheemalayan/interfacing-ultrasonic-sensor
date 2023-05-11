@@ -4,7 +4,7 @@
 #include <EasyBuzzer.h>
 #include <semphr.h>
 
-#define BUZZER_PIN 3
+#define BUZZER_PIN 7
 #define TRIGGER_PIN A3
 #define ECHO_PIN A2
 
